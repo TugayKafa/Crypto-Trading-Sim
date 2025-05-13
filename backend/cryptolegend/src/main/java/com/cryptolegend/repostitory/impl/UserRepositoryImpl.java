@@ -17,15 +17,27 @@ public class UserRepositoryImpl implements UserRepository {
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int save(User user) {
+    public Optional<User> save(User user) {
         String sql = "INSERT INTO USERS (username, email) VALUES (?, ?)";
-        return jdbcTemplate.update(sql, user.getUsername(), user.getEmail());
+        int affectedRows = jdbcTemplate.update(sql, user.getUsername(), user.getEmail());
+        if (affectedRows == 0) {
+            return Optional.empty();
+        } else {
+            return Optional.of(user);
+        }
     }
 
     @Override
     public Optional<User> findById(int userId) {
         String sql = "SELECT * FROM users WHERE user_id = ?";
         List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), userId);
+        return users.stream().findFirst();
+    }
+
+    @Override
+    public Optional<User> findByUsername(String username) {
+        String sql = "SELECT * FROM users WHERE username = ?";
+        List<User> users = jdbcTemplate.query(sql, new UserRowMapper(), username);
         return users.stream().findFirst();
     }
 

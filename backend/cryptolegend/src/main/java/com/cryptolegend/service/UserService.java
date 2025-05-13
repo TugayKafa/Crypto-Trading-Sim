@@ -6,9 +6,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    int registerUser(User user);
+    User registerUser(User user);
 
     Optional<User> findUserById(int userId);
+
+    Optional<User> findUserByUsername(String username);
 
     List<User> getAllUsers();
 

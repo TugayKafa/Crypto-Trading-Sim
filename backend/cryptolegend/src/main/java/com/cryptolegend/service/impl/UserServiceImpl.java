@@ -2,6 +2,7 @@ package com.cryptolegend.cryptolegend.service.impl;
 
 import com.cryptolegend.cryptolegend.entity.User;
 import com.cryptolegend.cryptolegend.repostitory.UserRepository;
+import com.cryptolegend.cryptolegend.service.AccountService;
 import com.cryptolegend.cryptolegend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,15 +16,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public int registerUser(User user) {
-        return userRepository.save(user);
-    }
+    @Autowired
+    private AccountService accountService;
 
+    @Override
+    public User registerUser(User user) {
+        User res = userRepository.save(user).orElse(null);
+        if (res != null) {
+            accountService.createAccount(userRepository.findByUsername(user.getUsername()).get().getUserId());
+        }
+        return res;
+    }
 
     @Override
     public Optional<User> findUserById(int userId) {
         return userRepository.findById(userId);
+    }
+
+    @Override
+    public Optional<User> findUserByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override
