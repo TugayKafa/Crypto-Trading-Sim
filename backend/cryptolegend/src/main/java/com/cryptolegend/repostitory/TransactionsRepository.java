@@ -1,4 +1,4 @@
-package com.cryptolegend.cryptolegend.repostitory;
+package com.cryptolegend.repostitory;
 
 public interface TransactionsRepository {
 }

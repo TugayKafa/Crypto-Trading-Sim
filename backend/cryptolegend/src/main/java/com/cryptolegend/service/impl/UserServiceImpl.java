@@ -1,9 +1,9 @@
-package com.cryptolegend.cryptolegend.service.impl;
+package com.cryptolegend.service.impl;
 
-import com.cryptolegend.cryptolegend.entity.User;
-import com.cryptolegend.cryptolegend.repostitory.UserRepository;
-import com.cryptolegend.cryptolegend.service.AccountService;
-import com.cryptolegend.cryptolegend.service.UserService;
+import com.cryptolegend.entity.User;
+import com.cryptolegend.repostitory.UserRepository;
+import com.cryptolegend.service.AccountService;
+import com.cryptolegend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

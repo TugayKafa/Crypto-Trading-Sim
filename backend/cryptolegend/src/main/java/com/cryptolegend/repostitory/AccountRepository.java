@@ -1,6 +1,6 @@
-package com.cryptolegend.cryptolegend.repostitory;
+package com.cryptolegend.repostitory;
 
-import com.cryptolegend.cryptolegend.entity.Account;
+import com.cryptolegend.entity.Account;
 
 import java.util.Optional;
 

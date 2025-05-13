@@ -1,8 +1,8 @@
-package com.cryptolegend.cryptolegend.repostitory.impl;
+package com.cryptolegend.repostitory.impl;
 
-import com.cryptolegend.cryptolegend.entity.Account;
-import com.cryptolegend.cryptolegend.repostitory.AccountRepository;
-import com.cryptolegend.cryptolegend.repostitory.mapper.AccountRowMapper;
+import com.cryptolegend.entity.Account;
+import com.cryptolegend.repostitory.AccountRepository;
+import com.cryptolegend.repostitory.mapper.AccountRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

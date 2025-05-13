@@ -1,4 +1,4 @@
-package com.cryptolegend.cryptolegend;
+package com.cryptolegend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

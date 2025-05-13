@@ -1,4 +1,4 @@
-package com.cryptolegend.cryptolegend.entity;
+package com.cryptolegend.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

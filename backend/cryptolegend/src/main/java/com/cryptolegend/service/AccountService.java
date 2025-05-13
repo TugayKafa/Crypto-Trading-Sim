@@ -1,6 +1,6 @@
-package com.cryptolegend.cryptolegend.service;
+package com.cryptolegend.service;
 
-import com.cryptolegend.cryptolegend.entity.Account;
+import com.cryptolegend.entity.Account;
 
 import java.util.Optional;
 

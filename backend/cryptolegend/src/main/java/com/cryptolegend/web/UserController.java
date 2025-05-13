@@ -1,7 +1,7 @@
-package com.cryptolegend.cryptolegend.web;
+package com.cryptolegend.web;
 
-import com.cryptolegend.cryptolegend.entity.User;
-import com.cryptolegend.cryptolegend.service.UserService;
+import com.cryptolegend.entity.User;
+import com.cryptolegend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

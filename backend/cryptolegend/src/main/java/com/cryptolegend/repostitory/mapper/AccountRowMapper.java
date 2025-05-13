@@ -1,6 +1,6 @@
-package com.cryptolegend.cryptolegend.repostitory.mapper;
+package com.cryptolegend.repostitory.mapper;
 
-import com.cryptolegend.cryptolegend.entity.Account;
+import com.cryptolegend.entity.Account;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

@@ -6,7 +6,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE accounts (
-    account_id INT PRIMARY KEY,
+    account_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT UNIQUE NOT NULL,
     balance DECIMAL(18, 2) DEFAULT 10000.00,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
