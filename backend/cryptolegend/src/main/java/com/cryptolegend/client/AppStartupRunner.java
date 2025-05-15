@@ -2,9 +2,8 @@ package com.cryptolegend.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class AppStartupRunner implements CommandLineRunner {
 
     @Autowired

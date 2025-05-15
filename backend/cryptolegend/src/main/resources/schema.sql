@@ -23,3 +23,13 @@ CREATE TABLE transactions (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (account_id) REFERENCES accounts(account_id) ON DELETE CASCADE
 );
+
+CREATE TABLE holdings (
+    holding_id INT AUTO_INCREMENT PRIMARY KEY,
+    account_id INT NOT NULL,
+    crypto_symbol VARCHAR(10) NOT NULL,
+    quantity DECIMAL(18, 8) NOT NULL,
+    average_price DECIMAL(18, 2) NOT NULL,
+    FOREIGN KEY (account_id) REFERENCES accounts(account_id) ON DELETE CASCADE,
+    UNIQUE(account_id, crypto_symbol)
+);

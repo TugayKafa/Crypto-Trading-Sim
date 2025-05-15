@@ -2,11 +2,10 @@ package com.cryptolegend.client;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
-import org.springframework.stereotype.Component;
 
 import java.net.URI;
 
-@Component
+//@Component
 public class KrakenWebSocketClient extends WebSocketClient {
 
     public KrakenWebSocketClient() throws Exception {

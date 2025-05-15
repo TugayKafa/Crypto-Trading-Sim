@@ -12,3 +12,8 @@ INSERT INTO transactions (account_id, crypto_symbol, amount, price_per_unit, tra
 (1, 'BTC', 0.005, 25000.00, 'BUY'),
 (2, 'ETH', 0.1, 1800.00, 'BUY'),
 (3, 'ADA', 1000, 0.35, 'BUY');
+
+INSERT INTO holdings (account_id, crypto_symbol, quantity, average_price) VALUES
+(1,"BTC", 0.005, 25000),
+(2,"ETH", 0.1, 1800),
+(3,"ADA", 1000, 0.35);
