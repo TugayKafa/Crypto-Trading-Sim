@@ -29,7 +29,7 @@ public class UserController {
         if (result != null) {
             return ResponseEntity.ok("User registered successfully!");
         } else {
-            return ResponseEntity.status(500).body("Failed to register user.");
+            return ResponseEntity.badRequest().body("Failed to register user.");
         }
     }
 
@@ -39,7 +39,7 @@ public class UserController {
         if (result > 0) {
             return ResponseEntity.ok("Email updated successfully!");
         } else {
-            return ResponseEntity.status(500).body("Failed to update email.");
+            return ResponseEntity.badRequest().body("Failed to update email.");
         }
     }
 
@@ -62,7 +62,7 @@ public class UserController {
         if (result > 0) {
             return ResponseEntity.ok("User deleted successfully!");
         } else {
-            return ResponseEntity.status(500).body("Failed to delete user.");
+            return ResponseEntity.badRequest().body("Failed to delete user.");
         }
     }
 }

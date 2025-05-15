@@ -4,7 +4,6 @@ import com.cryptolegend.entity.Account;
 import com.cryptolegend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,9 +41,9 @@ public class AccountController {
         return ResponseEntity.ok("Account balance updated successfully.");
     }
 
-    @DeleteMapping("/{accountId}")
+    /*@DeleteMapping("/{accountId}")
     public ResponseEntity<String> deleteAccount(@PathVariable int accountId) {
         accountService.deleteAccount(accountId);
         return ResponseEntity.ok("Account deleted successfully.");
-    }
+    }*/
 }

@@ -10,7 +10,7 @@ public class Holding {
     private Integer accountId;
     private String cryptoSymbol;
     private Double amount;
-    private double averagePrice;
+    private Double averagePrice;
 
     @Override
     public String toString() {

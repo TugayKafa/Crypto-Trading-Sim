@@ -36,6 +36,9 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public void updateAccountBalance(int accountId, double newBalance) {
+        if (newBalance < 0) {
+            throw new IllegalArgumentException("Balance must be greater than 0!"); // TODO:
+        }
         accountRepository.updateAccountBalance(accountId, newBalance);
     }
 
