@@ -42,7 +42,7 @@ const RegisterPage = () => {
           <button type="submit">Register</button>
         </form>
         <p>
-          Имаш акаунт? <Link to="/">Влез в системата</Link>
+          Already registered? <Link to="/">Login</Link>
         </p>
       </div>
     </div>

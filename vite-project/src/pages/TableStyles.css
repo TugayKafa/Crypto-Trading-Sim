@@ -1,0 +1,60 @@
+.table-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #1f2937;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.table-container h2 {
+  color: #ffffff;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.custom-table {
+  width: 100%;
+  color: #ffffff;
+  background-color: #2d3748;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.custom-table thead th {
+  background-color: #4a5568;
+  color: #ffffff;
+  padding: 15px;
+  text-align: center;
+}
+
+.custom-table tbody td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #4a5568;
+}
+
+.custom-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.custom-table tbody tr:nth-child(even) {
+  background-color: #3a475e;
+}
+
+.custom-table tbody tr:nth-child(odd) {
+  background-color: #2d3748;
+}
+
+.custom-table button {
+  background-color: #4299e1;
+  color: #ffffff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.custom-table button:hover {
+  background-color: #3182ce;
+}

@@ -1,13 +1,12 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import CryptoTable from '../components/CryptoTable';
 
 function HomePage() {
-  const { username } = useParams();  // тук се взема username от URL-а
+  const { username } = useParams();
 
   return (
     <div>
-      <h1>Добре дошъл, {username}!</h1>
+      <h1>Welcome, {username}!</h1>
       <CryptoTable />
     </div>
   );

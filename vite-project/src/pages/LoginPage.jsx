@@ -10,9 +10,23 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.get(`http://localhost:8080/users/${username}`);
-      if (response.status === 200) {
-        navigate(`/${username}`);
+      const userResponse = await axios.get(`http://localhost:8080/users/${username}`);
+      if (userResponse.status === 200) {
+        const userId = userResponse.data.userId;
+        
+        localStorage.setItem("username", username);
+        localStorage.setItem("userId", userId);
+
+        const accountResponse = await axios.get(`http://localhost:8080/accounts/user/${userId}`);
+        if (accountResponse.status === 200) {
+          const balance = accountResponse.data.balance;
+          const accountId = accountResponse.data.accountId;
+
+          localStorage.setItem("balance", balance);
+          localStorage.setItem("accountId", accountId);
+
+          navigate(`/${username}`);
+        }
       }
     } catch (error) {
       console.error("Login failed:", error);
@@ -35,7 +49,7 @@ const LoginPage = () => {
           <button type="submit">Login</button>
         </form>
         <p>
-          Нямаш акаунт? <Link to="/register">Регистрирай се</Link>
+          Start trading now? <Link to="/register">Register</Link>
         </p>
       </div>
     </div>
