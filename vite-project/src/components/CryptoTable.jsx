@@ -31,7 +31,6 @@ const CryptoTable = ({ username }) => {
 
     const handleBuy = (symbol) => {
         alert(`Buying ${symbol} for user ${username}`);
-        // Тук ще добавим логика за buy заявка към backend-a
     };
 
     return (
@@ -50,7 +49,7 @@ const CryptoTable = ({ username }) => {
                         <tr key={index}>
                             <td>{crypto.symbol}</td>
                             <td>${crypto.price}</td>
-                            <td><Button variant="primary" onClick={() => handleBuy(crypto.symbol)}>Buy</Button></td>
+                            <td><Button variant="btn btn-success" onClick={() => handleBuy(crypto.symbol)}>Buy</Button></td>
                         </tr>
                     ))}
                 </tbody>

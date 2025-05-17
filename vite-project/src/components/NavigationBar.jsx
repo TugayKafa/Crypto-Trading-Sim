@@ -5,7 +5,6 @@ import BalanceDisplay from './BalanceDisplay';
 
 function NavigationBar() {
   const location = useLocation();
-
   const hideNavLinks = location.pathname === "/" || location.pathname === "/register";
   const username = localStorage.getItem("username");
 
@@ -22,7 +21,9 @@ function NavigationBar() {
               <Nav.Link as={Link} to="/transactions">Transactions</Nav.Link>
               <Nav.Link as={Link} to="/">Logout</Nav.Link>
             </Nav>
-            <BalanceDisplay />
+            <div className="balance-container">
+              <BalanceDisplay />
+            </div>
           </Navbar.Collapse>
         )}
       </Container>
