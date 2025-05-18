@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import { BalanceProvider } from "./context/BalanceContext";
 import TransactionsPage from "./pages/TransactionsPage";
+import BalancePage from './pages/BalancePage';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                     <Route path="/:username" element={<CryptoTable />} />
                     <Route path="/portfolio" element={<PortfolioPage />} />
                     <Route path="/transactions" element={<TransactionsPage />} />
+                    <Route path="/balance" element={<BalancePage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </Router>

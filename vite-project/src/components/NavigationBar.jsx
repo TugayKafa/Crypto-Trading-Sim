@@ -19,6 +19,7 @@ function NavigationBar() {
               <Nav.Link as={Link} to={`/${username}`}>Home</Nav.Link>
               <Nav.Link as={Link} to="/portfolio">Portfolio</Nav.Link>
               <Nav.Link as={Link} to="/transactions">Transactions</Nav.Link>
+              <Nav.Link as={Link} to="/balance">Balance</Nav.Link>
               <Nav.Link as={Link} to="/">Logout</Nav.Link>
             </Nav>
             <BalanceDisplay />

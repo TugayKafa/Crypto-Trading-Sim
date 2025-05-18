@@ -1,0 +1,36 @@
+.balance-page {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #222;
+    color: #f8f9fa;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.balance-display {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #27ae60;
+}
+
+.balance-controls input {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #555;
+    background-color: #333;
+    color: #f8f9fa;
+}
+
+.balance-controls button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
