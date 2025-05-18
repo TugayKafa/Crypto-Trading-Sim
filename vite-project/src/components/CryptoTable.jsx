@@ -1,8 +1,8 @@
-import React, { useEffect, useState, useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Table, Button, Container, Modal, Form } from 'react-bootstrap';
 import { BalanceContext } from '../context/BalanceContext';
-import './CryptoTable.css';
+import '../styles/CryptoTable.css';
 
 const SYMBOL_MAP = {
     XXBTZUSD: "BTC",

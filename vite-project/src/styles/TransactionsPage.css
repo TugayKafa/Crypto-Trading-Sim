@@ -1,0 +1,19 @@
+.sell-type {
+  color: #28a745 !important;
+  font-weight: bold;
+}
+
+.buy-type {
+  color: #dc3545 !important;
+  font-weight: bold;
+}
+
+.sell-total {
+  color: #28a745 !important;
+  font-weight: bold;
+}
+
+.buy-total {
+  color: #dc3545 !important;
+  font-weight: bold;
+}

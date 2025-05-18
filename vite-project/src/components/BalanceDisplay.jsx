@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { BalanceContext } from "../context/BalanceContext";
-import "./BalanceDisplay.css";
+import "../styles/BalanceDisplay.css";
 
 function BalanceDisplay() {
     const { balance } = useContext(BalanceContext);

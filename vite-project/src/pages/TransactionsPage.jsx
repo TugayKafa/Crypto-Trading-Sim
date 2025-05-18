@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
-import './TransactionsPage.css';
+import '../styles/TransactionsPage.css';
 
 function TransactionsPage() {
   const [transactions, setTransactions] = useState([]);
@@ -40,9 +40,13 @@ function TransactionsPage() {
               <td>{tx.cryptoSymbol}</td>
               <td>{tx.amount}</td>
               <td>${tx.pricePerUnit.toFixed(2)}</td>
-              <td>{tx.transactionType}</td>
+              <td className={tx.transactionType === 'BUY' ? 'buy-type' : 'sell-type'}>
+                {tx.transactionType}
+              </td>
               <td>{new Date(tx.createdAt).toLocaleString()}</td>
-              <td>${(tx.amount*tx.pricePerUnit).toFixed(2)}</td>
+              <td className={tx.transactionType === 'BUY' ? 'buy-total' : 'sell-total'}>
+                ${(tx.amount * tx.pricePerUnit).toFixed(2)}
+              </td>
             </tr>
           ))}
         </tbody>

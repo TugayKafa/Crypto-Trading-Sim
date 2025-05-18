@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./Auth.css";
+import "../styles/Auth.css";
 
 const RegisterPage = () => {
   const [username, setUsername] = useState("");

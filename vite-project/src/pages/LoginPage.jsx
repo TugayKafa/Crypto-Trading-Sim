@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { BalanceContext } from "../context/BalanceContext";
-import "./Auth.css";
+import "../styles/Auth.css";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
