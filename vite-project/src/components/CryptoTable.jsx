@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Table, Button, Container, Modal, Form } from 'react-bootstrap';
+import { BalanceContext } from '../context/BalanceContext';
 
 const CryptoTable = ({ username }) => {
     const [cryptos, setCryptos] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedCrypto, setSelectedCrypto] = useState(null);
-    const [balance, setBalance] = useState(parseFloat(localStorage.getItem('balance')) || 0);
     const [cryptoAmount, setCryptoAmount] = useState(0);
     const [usdAmount, setUsdAmount] = useState(0.01);
     const accountId = localStorage.getItem('accountId');
+    const { balance, setBalance } = useContext(BalanceContext);
 
     useEffect(() => {
         const fetchCryptos = async () => {
@@ -21,9 +22,9 @@ const CryptoTable = ({ username }) => {
                 });
                 const data = response.data.result;
                 const formattedData = Object.entries(data).map(([symbol, info]) => ({
-                    symbol: symbol.replace('USD', ''),
+                    symbol: symbol.replace("USD", ""),
                     price: parseFloat(info.c[0])
-                 }));
+                }));
                 setCryptos(formattedData);
             } catch (error) {
                 console.error('Error fetching crypto data:', error);
@@ -70,10 +71,9 @@ const CryptoTable = ({ username }) => {
                 transactionType: "BUY"
             });
 
-            // Update balance in local storage
+            // Update global balance
             const newBalance = balance - usdAmount;
             setBalance(newBalance);
-            localStorage.setItem('balance', newBalance);
 
             // Close modal
             setShowModal(false);

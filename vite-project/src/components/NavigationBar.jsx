@@ -21,9 +21,7 @@ function NavigationBar() {
               <Nav.Link as={Link} to="/transactions">Transactions</Nav.Link>
               <Nav.Link as={Link} to="/">Logout</Nav.Link>
             </Nav>
-            <div className="balance-container">
-              <BalanceDisplay />
-            </div>
+            <BalanceDisplay />
           </Navbar.Collapse>
         )}
       </Container>

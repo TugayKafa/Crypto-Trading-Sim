@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect,useContext, useState } from 'react';
 import axios from 'axios';
 import './PortfolioPage.css';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { BalanceContext } from '../context/BalanceContext';
 
 function PortfolioPage() {
     const [holdings, setHoldings] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [selectedHolding, setSelectedHolding] = useState(null);
-    const [balance, setBalance] = useState(parseFloat(localStorage.getItem('balance')) || 0);
     const [cryptoAmount, setCryptoAmount] = useState(0);
     const [usdAmount, setUsdAmount] = useState(0.01);
-    const accountId = localStorage.getItem('accountId');
+    const accountId = localStorage.getItem("accountId");
+    const { balance, setBalance } = useContext(BalanceContext);
 
     useEffect(() => {
         const fetchHoldings = async () => {
@@ -76,19 +77,18 @@ function PortfolioPage() {
                 cryptoSymbol: selectedHolding.cryptoSymbol,
                 amount: cryptoAmount,
                 pricePerUnit: selectedHolding.currentPrice,
-                transactionType: "BUY"
+                transactionType: "BUY",
             };
 
             const response = await axios.post("http://localhost:8080/transactions", transactionData);
             
             if (response.status === 200 || response.status === 201) {
                 const newBalance = balance - usdAmount;
+                setBalance(newBalance);
                 localStorage.setItem("balance", newBalance.toFixed(2));
 
-                window.dispatchEvent(new Event("balanceUpdate"));
-
                 setShowModal(false);
-                alert("Покупката беше успешна!");
+                alert("Transaction is successful!");
             }
         } catch (error) {
             console.error("Error creating transaction:", error);
