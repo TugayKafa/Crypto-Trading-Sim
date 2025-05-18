@@ -1,7 +1,6 @@
 package com.cryptolegend.service.impl;
 
 import com.cryptolegend.entity.Holding;
-import com.cryptolegend.entity.User;
 import com.cryptolegend.repostitory.HoldingRepository;
 import com.cryptolegend.service.HoldingService;
 import org.springframework.beans.factory.annotation.Autowired;

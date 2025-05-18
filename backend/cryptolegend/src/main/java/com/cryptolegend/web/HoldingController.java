@@ -17,40 +17,8 @@ public class HoldingController {
     @Autowired
     private HoldingService holdingService;
 
-    /*@PostMapping
-    public ResponseEntity<String> createHolding(@RequestBody Holding holding) {
-        int affectedRows = holdingService.addHolding(holding);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Successfully bought new crypto!");
-    }*/
-
-    /*@PutMapping("/{id}")
-    public ResponseEntity<String> updateHolding(@PathVariable int id, @RequestBody Holding holding) {
-        Holding existing = holdingService.getHoldingById(id);
-        if (existing == null) {
-            return ResponseEntity.notFound().build();
-        }
-        holdingService.updateHolding(id, holding.getAmount(), holding.getAveragePrice());
-        return ResponseEntity.ok("Successfully updated crypto holding!");
-    }*/
-
     @GetMapping("/account/{accountId}")
     public List<Holding> getHoldingsByAccountId(@PathVariable int accountId) {
         return holdingService.getAllHoldingsByAccountId(accountId);
     }
-
-    /*@GetMapping("/{id}")
-    public ResponseEntity<Holding> getHoldingById(@PathVariable int id) {
-        Holding holding = holdingService.getHoldingById(id);
-        if (holding != null) {
-            return ResponseEntity.ok(holding);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }*/
-
-    /*@DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteHolding(@PathVariable int id) {
-        holdingService.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }*/
 }

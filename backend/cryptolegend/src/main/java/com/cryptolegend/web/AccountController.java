@@ -40,10 +40,4 @@ public class AccountController {
         accountService.updateAccountBalance(accountId, newBalance);
         return ResponseEntity.ok("Account balance updated successfully.");
     }
-
-    /*@DeleteMapping("/{accountId}")
-    public ResponseEntity<String> deleteAccount(@PathVariable int accountId) {
-        accountService.deleteAccount(accountId);
-        return ResponseEntity.ok("Account deleted successfully.");
-    }*/
 }
