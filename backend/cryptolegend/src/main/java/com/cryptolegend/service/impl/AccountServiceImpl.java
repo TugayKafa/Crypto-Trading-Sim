@@ -1,6 +1,7 @@
 package com.cryptolegend.service.impl;
 
 import com.cryptolegend.entity.Account;
+import com.cryptolegend.exception.NegativeBalanceException;
 import com.cryptolegend.repostitory.AccountRepository;
 import com.cryptolegend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void updateAccountBalance(int accountId, double newBalance) {
         if (newBalance < 0) {
-            throw new IllegalArgumentException("Balance must be greater than 0!"); // TODO:
+            throw new NegativeBalanceException("Balance must be greater than 0!");
         }
         accountRepository.updateAccountBalance(accountId, newBalance);
     }

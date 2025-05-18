@@ -1,4 +1,4 @@
-package com.cryptolegend.web;
+package com.cryptolegend.controller;
 
 import com.cryptolegend.entity.Account;
 import com.cryptolegend.service.AccountService;
@@ -34,9 +34,6 @@ public class AccountController {
 
     @PutMapping("/{accountId}/balance")
     public ResponseEntity<String> updateAccountBalance(@PathVariable int accountId, @RequestParam double newBalance) {
-        if (newBalance < 0) {
-            return ResponseEntity.badRequest().body("Account balance cannot be negative.");
-        }
         accountService.updateAccountBalance(accountId, newBalance);
         return ResponseEntity.ok("Account balance updated successfully.");
     }

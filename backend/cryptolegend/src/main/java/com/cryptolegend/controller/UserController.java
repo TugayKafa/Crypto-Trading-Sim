@@ -1,4 +1,4 @@
-package com.cryptolegend.web;
+package com.cryptolegend.controller;
 
 import com.cryptolegend.entity.User;
 import com.cryptolegend.service.UserService;

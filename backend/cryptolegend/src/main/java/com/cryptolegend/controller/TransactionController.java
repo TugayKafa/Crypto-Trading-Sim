@@ -1,4 +1,4 @@
-package com.cryptolegend.web;
+package com.cryptolegend.controller;
 
 import com.cryptolegend.entity.Transaction;
 import com.cryptolegend.service.TransactionService;
@@ -23,22 +23,13 @@ public class TransactionController {
 
     @PostMapping
     public ResponseEntity<String> createTransaction(@RequestBody Transaction transaction) {
-        try {
-            transactionService.saveTransaction(transaction);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Transaction saved successfully.");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred.");
-        }
+        transactionService.saveTransaction(transaction);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Transaction saved successfully.");
     }
 
     @GetMapping("/{accountId}")
     public ResponseEntity<List<Transaction>> getTransactionsByAccountId(@PathVariable int accountId) {
         List<Transaction> transactions = transactionService.getTransactionsByAccountId(accountId);
-        if (transactions.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
         return ResponseEntity.ok(transactions);
     }
 
