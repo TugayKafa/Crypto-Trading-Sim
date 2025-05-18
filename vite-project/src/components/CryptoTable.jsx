@@ -2,9 +2,34 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { Table, Button, Container, Modal, Form } from 'react-bootstrap';
 import { BalanceContext } from '../context/BalanceContext';
+import './CryptoTable.css';
+
+const SYMBOL_MAP = {
+    XXBTZUSD: "BTC",
+    XETHZUSD: "ETH",
+    ADAUSD: "ADA",
+    XRPUSD: "XRP",
+    DOTUSD: "DOT",
+    XLTCZUSD: "LTC",
+    SOLUSD: "SOL",
+    DOGEUSD: "DOGE",
+    BNBUSD: "BNB",
+    AVAXUSD: "AVAX",
+    MATICUSD: "MATIC",
+    UNIUSD: "UNI",
+    LINKUSD: "LINK",
+    ATOMUSD: "ATOM",
+    TRXUSD: "TRX",
+    XXLMZUSD: "XLM",
+    XETCZUSD: "ETC",
+    ICPUSD: "ICP",
+    FILUSD: "FIL",
+    NEARUSD: "NEAR"
+};
 
 const CryptoTable = ({ username }) => {
     const [cryptos, setCryptos] = useState([]);
+    const [priceChanges, setPriceChanges] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [selectedCrypto, setSelectedCrypto] = useState(null);
     const [cryptoAmount, setCryptoAmount] = useState(0);
@@ -17,29 +42,46 @@ const CryptoTable = ({ username }) => {
             try {
                 const response = await axios.get('https://api.kraken.com/0/public/Ticker', {
                     params: {
-                        pair: 'BTCUSD,ETHUSD,ADAUSD,XRPUSD,DOTUSD,LTCUSD,SOLUSD,DOGEUSD,BNBUSD,AVAXUSD,MATICUSD,UNIUSD,LINKUSD,ATOMUSD,TRXUSD,XLMUSD,ETCUSD,ICPUSD,FILUSD,NEARUSD'
+                        pair: Object.keys(SYMBOL_MAP).join(",")
                     }
                 });
                 const data = response.data.result;
-                const formattedData = Object.entries(data).map(([symbol, info]) => ({
-                    symbol: symbol.replace("USD", ""),
-                    price: parseFloat(info.c[0])
+                
+                const updatedCryptos = Object.entries(data).map(([symbol, info]) => ({
+                    symbol: SYMBOL_MAP[symbol] || symbol,
+                    price: parseFloat(info.c[0]).toFixed(5)
                 }));
-                setCryptos(formattedData);
+
+                // Calculate price changes
+                const newPriceChanges = {};
+                updatedCryptos.forEach((crypto) => {
+                    const previousPrice = cryptos.find(c => c.symbol === crypto.symbol)?.price || 0;
+                    const currentPrice = parseFloat(crypto.price);
+                    const prevPrice = parseFloat(previousPrice);
+                    
+                    if (currentPrice > prevPrice) {
+                        newPriceChanges[crypto.symbol] = 'price-up';
+                    } else if (currentPrice < prevPrice) {
+                        newPriceChanges[crypto.symbol] = 'price-down';
+                    }
+                });
+
+                setPriceChanges(newPriceChanges);
+                setCryptos(updatedCryptos);
             } catch (error) {
                 console.error('Error fetching crypto data:', error);
             }
         };
 
         fetchCryptos();
-        const interval = setInterval(fetchCryptos, 3000);
+        const interval = setInterval(fetchCryptos, 1600);
         return () => clearInterval(interval);
-    }, []);
+    }, [cryptos]);
 
     const handleBuyClick = (crypto) => {
         setSelectedCrypto(crypto);
         setUsdAmount(0.01);
-        setCryptoAmount(0.01 / crypto.price);
+        setCryptoAmount((0.01 / parseFloat(crypto.price)).toFixed(8));
         setShowModal(true);
     };
 
@@ -49,7 +91,7 @@ const CryptoTable = ({ username }) => {
             newUsdAmount = balance;
         }
         setUsdAmount(newUsdAmount);
-        setCryptoAmount(newUsdAmount / selectedCrypto.price);
+        setCryptoAmount((newUsdAmount / parseFloat(selectedCrypto.price)).toFixed(8));
     };
 
     const handleUsdInputChange = (e) => {
@@ -58,7 +100,7 @@ const CryptoTable = ({ username }) => {
             newUsdAmount = balance;
         }
         setUsdAmount(newUsdAmount);
-        setCryptoAmount(newUsdAmount / selectedCrypto.price);
+        setCryptoAmount((newUsdAmount / parseFloat(selectedCrypto.price)).toFixed(8));
     };
 
     const handleBuyConfirm = async () => {
@@ -71,11 +113,9 @@ const CryptoTable = ({ username }) => {
                 transactionType: "BUY"
             });
 
-            // Update global balance
             const newBalance = balance - usdAmount;
             setBalance(newBalance);
 
-            // Close modal
             setShowModal(false);
         } catch (error) {
             console.error("Error executing transaction:", error);
@@ -97,7 +137,7 @@ const CryptoTable = ({ username }) => {
                     {cryptos.map((crypto, index) => (
                         <tr key={index}>
                             <td>{crypto.symbol}</td>
-                            <td>${crypto.price.toFixed(2)}</td>
+                            <td className={priceChanges[crypto.symbol] || ''}>${crypto.price}</td>
                             <td>
                                 <Button variant="success" onClick={() => handleBuyClick(crypto)}>
                                     Buy
@@ -135,7 +175,7 @@ const CryptoTable = ({ username }) => {
                                 />
                                 <Form.Text>${usdAmount.toFixed(2)} USD</Form.Text>
                                 <Form.Text className="d-block mt-2">
-                                    ≈ {cryptoAmount.toFixed(8)} {selectedCrypto.symbol}
+                                    ≈ {cryptoAmount} {selectedCrypto.symbol}
                                 </Form.Text>
                             </Form.Group>
                         </Form>

@@ -40,7 +40,7 @@ function PortfolioPage() {
         };
 
         fetchHoldings();
-        const interval = setInterval(fetchHoldings, 3000);
+        const interval = setInterval(fetchHoldings, 1600);
 
         return () => clearInterval(interval);
     }, [accountId]);
